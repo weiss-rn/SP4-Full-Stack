@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title><%= title %></title>
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"
+    />
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">CRUD DATA MAHASISWA STIKOM</h2>
+<div class="row mt-3">
+<!-- Table -->
+<div class="col-auto col-lg-12 mt-2"><%- include('table.ejs') %></div>
+</div>
+</div>
+<!-- Add Modal -->
+<div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Tambah Data Mahasiswa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="nama">Nama</label>
+            <input type="text" class="form-control" id="nama" name="Nama" required />
+          </div>
+          <div class="form-group">
+            <label for="nim">NIM</label>
+            <input type="text" class="form-control" id="nim" name="Nim" required />
+          </div>
+          <div class="form-group">
+            <label for="jurusan">Jurusan</label>
+            <input type="text" class="form-control" id="jurusan" name="Jurusan" required />
+          </div>
+          <div class="form-group">
+            <label for="angkatan">Angkatan</label>
+            <input type="text" class="form-control" id="angkatan" name="Angkatan" required />
+          </div>
+          <div class="form-group">
+            <label for="alamat">Alamat</label>
+            <textarea class="form-control" id="alamat" name="Alamat" rows="3" required></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- JS -->
+<%- include('js.ejs') %>
+</body>
+</html>
