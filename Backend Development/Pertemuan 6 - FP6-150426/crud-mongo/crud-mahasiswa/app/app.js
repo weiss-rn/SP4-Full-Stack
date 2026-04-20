@@ -2,6 +2,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 var app = express();
 
@@ -14,22 +16,33 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+app.use(
+  session({
+    secret: 'cat keyboard',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 60000 }
+  })
+);
+
+app.use(flash());
+
 // Routes
 const mahasiswaRoutes = require('../routes/mahasiswa');
 app.use('/mahasiswa', mahasiswaRoutes);
 
 app.get('/', function(req, res) {
-    res.render('index', { title: 'CRUD Mahasiswa', mahasiswa: [], message: {} });
+  res.render('index', { title: 'CRUD Mahasiswa', mahasiswa: [], message: {} });
 });
 
 app.use(function(req, res, next) {
-    res.status(404);
-    next(new Error('Not Found'));
+  res.status(404);
+  next(new Error('Not Found'));
 });
 
 app.use(function(error, req, res, next) {
-    res.status(error.status || 500);
-    res.type('text').send(req.app.get('env') === 'development' ? error.message : 'Internal Server Error');
+  res.status(error.status || 500);
+  res.type('text').send(req.app.get('env') === 'development' ? error.message : 'Internal Server Error');
 });
 
 module.exports = app;
