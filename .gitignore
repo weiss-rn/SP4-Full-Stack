@@ -43,7 +43,7 @@ next-env.d.ts
 
 # side files
 /Sparemoto-rewrite-next/
-/React-Extend
-/Unrelated
-/Unrelated-copy
-/mobile
+/React-Extend/
+/Unrelated/
+/Unrelated-copy/
+/mobile/
