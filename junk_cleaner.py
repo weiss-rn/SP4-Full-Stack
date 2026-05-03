@@ -283,6 +283,9 @@ def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
 
+    if args.jobs < 1:
+        parser.error("--jobs must be at least 1")
+
     if args.no_color or os.getenv("NO_COLOR") is not None:
         _USE_COLOR = False
 
@@ -389,7 +392,7 @@ def main() -> None:
 
         print(f"  {_c(CYAN, _pad(name, 22))}  "
               f"{_c(DIM, _pad(desc, 30))}  "
-              f"{_c(DIM, f'({count_lbl}, {format_size(group_size)})')}')
+              f"{_c(DIM, f'({count_lbl}, {format_size(group_size)})')}")
 
         for i, f in enumerate(items):
             rel = (f.path.relative_to(root)
