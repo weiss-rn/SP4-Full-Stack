@@ -1,10 +1,10 @@
 import { createHash } from "node:crypto";
 
-import type { Product } from "@/data/products";
-import { categories as seedCategories, products as seedProducts } from "@/data/products";
-import { getCloudflareEnv, getD1Database } from "@/lib/cloudflare";
-import { getDiscountRate, getShippingFee, roundCurrency } from "@/lib/commerce";
-import type { DemoOrderInput, DemoOrderReceipt, DemoOrderReportItem } from "@/types/demo-orders";
+import type { Product } from "../data/products";
+import { categories as seedCategories, products as seedProducts } from "../data/products";
+import { getCloudflareEnv, getD1Database } from "./cloudflare";
+import { getDiscountRate, getShippingFee, roundCurrency } from "./commerce";
+import type { DemoOrderInput, DemoOrderReceipt, DemoOrderReportItem } from "../types/demo-orders";
 
 const CREATE_PRODUCTS_TABLE_SQL = `
 CREATE TABLE IF NOT EXISTS products (
@@ -770,7 +770,7 @@ export function parseCloudinarySignature(params: Record<string, string | number>
   return createHash("sha1").update(`${sorted}${apiSecret}`).digest("hex");
 }
 
-export async function uploadToCloudinary(file: File) {
+export async function uploadToCloudinary(file: Blob & { name?: string }) {
   const env = await getCloudflareEnv();
 
   if (!env.CLOUDINARY_CLOUD_NAME || !env.CLOUDINARY_API_KEY || !env.CLOUDINARY_API_SECRET) {
@@ -780,7 +780,7 @@ export async function uploadToCloudinary(file: File) {
   const timestamp = Math.floor(Date.now() / 1000);
   const signature = parseCloudinarySignature({ timestamp }, env.CLOUDINARY_API_SECRET);
   const form = new FormData();
-  form.append("file", file, file.name);
+  form.append("file", file, file.name?.trim() || "upload.bin");
   form.append("api_key", env.CLOUDINARY_API_KEY);
   form.append("timestamp", String(timestamp));
   form.append("signature", signature);
