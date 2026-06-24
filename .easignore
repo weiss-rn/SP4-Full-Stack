@@ -1,0 +1,5 @@
+# Include only mobile/app-vf for EAS builds
+/*
+!/mobile
+/mobile/*
+!/mobile/app-vf

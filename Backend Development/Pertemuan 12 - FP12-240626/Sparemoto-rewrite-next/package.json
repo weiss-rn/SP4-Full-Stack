@@ -1,0 +1,49 @@
+{
+  "name": "sparemoto-rewrite-next",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "dev:wrangler": "wrangler dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\"",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+  },
+  "dependencies": {
+    "clsx": "2.1.1",
+    "hono": "^4.12.12",
+    "lucide-react": "^0.577.0",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "3.4.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.4.1",
+    "@next/eslint-plugin-next": "^16.2.7",
+    "@opennextjs/cloudflare": "1.17.1",
+    "@tailwindcss/postcss": "4.1.17",
+    "@types/node": "^22.0.0",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "esbuild": "0.27.3",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "postcss": "^8.4.0",
+    "prettier": "^3.8.3",
+    "tailwindcss": "4.1.17",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.60.1",
+    "vitest": "^4.0.15",
+    "wrangler": "4.72.0"
+  }
+}

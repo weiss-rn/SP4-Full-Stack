@@ -1,0 +1,20 @@
+"$schema" = "./node_modules/wrangler/config-schema.json"
+main = ".open-next/worker.js"
+name = "sparemoto-next"
+compatibility_date = "2026-04-15"
+compatibility_flags = [ "nodejs_compat" ]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[observability]
+enabled = true
+
+[vars]
+CLOUDINARY_CLOUD_NAME = "dve0hmpau"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sparemoto-products"
+database_id = "c3eda54d-f0fd-4e82-ba37-3df39140172a"
